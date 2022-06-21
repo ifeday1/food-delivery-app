@@ -7,6 +7,11 @@ import Avatar from "../img/avatar.png";
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+
+  const login = () => {
+    
+  }
+
   return (
     <div className=" fixed z-50 w-screen p-6 px-16 ">
     {/*Destop*/}
@@ -35,8 +40,16 @@ const Header = () => {
     <p className='text-xs text-white font-semibold'>2</p>
     </div>
     </div>
-    <motion.img whileTap={{scale: 0.6}}  src={Avatar} alt="user_img" className="w-10 min-w-[40px] h-10 min-h-[40px]
-     drop-shadow-x cursor-pointer" ></motion.img>
+
+    <div className='relative'>
+    <motion.img whileTap={{scale: 0.6}}
+    src={Avatar} alt="user_img" 
+    className="w-10 min-w-[40px] h-10 min-h-[40px]
+   drop-shadow-x cursor-pointer"
+   onClick={login}
+   /> 
+    </div>
+   
     </div>
     </div>
     {/*mobile*/}
