@@ -11,7 +11,12 @@ import {
 import { categories } from '../utils/data'
 import Loader from './Loader'
 import { storage } from '../firebase.config'
-import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage'
 import { saveItem } from '../utils/firebasefunection'
 
 const CreateContainer = () => {
@@ -28,104 +33,105 @@ const CreateContainer = () => {
   const uploadImage = (e) => {
     setIsLoading(true)
     const imageFile = e.target.files[0]
-    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`);
+    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`)
     const uploadTask = uploadBytesResumable(storageRef, imageFile)
 
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const uploadProgress =(snapshot.bytesTransferred/snapshot.totalBytes*100);
+        const uploadProgress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       },
       (error) => {
         console.log(error)
         setFields(true)
-        setMsg( " Error while uploading : Try Again 😞")
-        setAlertStatus("danger")
-        setTimeout(() =>{
-          setFields(false);
-          setIsLoading(false);
+        setMsg(' Error while uploading : Try Again 😞')
+        setAlertStatus('danger')
+        setTimeout(() => {
+          setFields(false)
+          setIsLoading(false)
         }, 4000)
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>{
-          setImageAsset(downloadURL);
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageAsset(downloadURL)
           setIsLoading(false)
           setFields(true)
-          setMsg("Image Uploaded Sucessfully 😇 ")
+          setMsg('Image Uploaded Sucessfully 😇 ')
           setAlertStatus('succes')
           setTimeout(() => {
             setFields(false)
-          }, 4000);
+          }, 4000)
         })
       },
     )
   }
 
   const deleteImage = () => {
-    setIsLoading(true);
-    const deleteRef =ref (storage, imageAsset);
+    setIsLoading(true)
+    const deleteRef = ref(storage, imageAsset)
     deleteObject(deleteRef).then(() => {
       setImageAsset(null)
       setIsLoading(false)
       setFields(true)
-      setMsg("Image Deleted Sucessfully 😇 ")
-          setAlertStatus('succes')
-          setTimeout(() => {
-            setFields(false)
-          }, 4000);
+      setMsg('Image Deleted Sucessfully 😇 ')
+      setAlertStatus('succes')
+      setTimeout(() => {
+        setFields(false)
+      }, 4000)
     })
-    }
+  }
 
   const saveDetails = () => {
-    setIsLoading(true);
+    setIsLoading(true)
+
     try {
-      if ( !title || !calories || !imageAsset || !price || !category) {
+      if ((!title || !calories || !imageAsset || !price || !category)) {
         setFields(true)
-        setMsg( " Reuired fields can't be empty")
-        setAlertStatus("danger")
-        setTimeout(() =>{
-          setFields(false);
-          setIsLoading(false);
+        setMsg("Required fields can't be empty")
+        setAlertStatus('danger')
+        setTimeout(() => {
+          setFields(false)
+          setIsLoading(false)
         }, 4000)
-      }
-      else{
-        const data ={
-          id :`${Date.now()}`,
-          title : title,
-          imageURL : imageAsset,
-          category : category,
-          calories : calories,
-          qty :1,
-          price : price
+      } else {
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imageURL: imageAsset,
+          category: category,
+          calories: calories,
+          qty: 1,
+          price: price,
         }
         saveItem(data)
         setIsLoading(false)
-        clearData();
         setFields(true)
-        setMsg("Data Uploaded Sucessfully 😇 ")
-            setAlertStatus('succes')
-            setTimeout(() => {
-              setFields(false)
-              }, 4000);
-        }
-
-      } catch (error) {
+        setMsg('Data Uploaded Sucessfully 😇 ')
+        clearData()
+        setAlertStatus('succes')
+        setTimeout(() => {
+          setFields(false)
+        }, 4000)
+      }
+    } catch (error) {
       console.log(error)
       setFields(true)
-      setMsg( " Error while uploading : Try Again 😞")
-      setAlertStatus("danger")
-      setTimeout(() =>{
-        setFields(false);
-        setIsLoading(false);
+      setMsg(' Error while uploading : Try Again 😞')
+      setAlertStatus('danger')
+      setTimeout(() => {
+        setFields(false)
+        setIsLoading(false)
       }, 4000)
     }
-    const clearData= () =>{
-      setTitle("")
-      setImageAsset(null)
-      setCalories("")
-      setPrice("")
-      setCategory("Selct categories")
-    }
+  }
+
+  const clearData = () => {
+    setTitle('')
+    setImageAsset(null)
+    setCalories('')
+    setPrice('')
+    setCategory('Select Category')
   }
 
   return (
