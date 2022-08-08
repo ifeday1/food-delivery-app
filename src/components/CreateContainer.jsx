@@ -57,8 +57,8 @@ const CreateContainer = () => {
           setImageAsset(downloadURL)
           setIsLoading(false)
           setFields(true)
-          setMsg('Image Uploaded Sucessfully 😇 ')
-          setAlertStatus('succes')
+          setMsg('Image Uploaded Successfully 😇 ')
+          setAlertStatus('success')
           setTimeout(() => {
             setFields(false)
           }, 4000)
@@ -74,8 +74,8 @@ const CreateContainer = () => {
       setImageAsset(null)
       setIsLoading(false)
       setFields(true)
-      setMsg('Image Deleted Sucessfully 😇 ')
-      setAlertStatus('succes')
+      setMsg('Image Deleted Successfully 😇 ')
+      setAlertStatus('success')
       setTimeout(() => {
         setFields(false)
       }, 4000)
@@ -109,7 +109,7 @@ const CreateContainer = () => {
         setFields(true)
         setMsg('Data Uploaded Sucessfully 😇 ')
         clearData()
-        setAlertStatus('succes')
+        setAlertStatus("success")
         setTimeout(() => {
           setFields(false)
         }, 4000)
