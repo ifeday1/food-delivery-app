@@ -10,7 +10,7 @@ export const heroData = [
     { id: 4, name: 'Fish Kabab', desp: 'Mixed Fieh Kabab', price: '8.99', imageSrc: fi1 },
 
 ]
-export default heroData;
+
 
 export const categories = [
     {id:1, name: "Chicken", urlParamName: "chicken",},
@@ -22,4 +22,6 @@ export const categories = [
     {id:7, name: "Soft Drinks", urlParamName: "drinks",},
 
 ]
+export default categories;
+
 
