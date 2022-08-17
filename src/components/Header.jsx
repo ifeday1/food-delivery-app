@@ -175,7 +175,7 @@ items-center justify-center'>
                   transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'>
                     Serives</li>
                 </ul>
-                <p className='md-2 p-2 rounded-md shadow-md flex items-center gap-3 cursor-pointer
+                <p className=' md-2 p-2 rounded-md shadow-md flex items-center gap-3 cursor-pointer
                 justify-center bg-gray-200
             hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
                   onClick={logout}
@@ -190,4 +190,4 @@ items-center justify-center'>
   )
 }
 
-export default Header
+export default Header;
