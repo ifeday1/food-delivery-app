@@ -127,4 +127,4 @@ const CartContainer = () => {
         </motion.div>
     );
 };
-export default CartContainer;
+export default CartContainer
