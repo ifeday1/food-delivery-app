@@ -91,4 +91,4 @@ const CartItem = ({ item, setFlag, flag }) => {
     );
 };
 
-export default CartItem
+export default CartItem;
