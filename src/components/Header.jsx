@@ -197,4 +197,4 @@ items-center justify-center'>
   )
 }
 
-export default Header
+export default Header;
